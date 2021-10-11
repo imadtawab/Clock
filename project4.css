@@ -8,6 +8,9 @@ body{
     margin:0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+
+/* star-clock */
 .clock{
     box-shadow: inset 0 0 55px rgb(0, 0, 0);
     border: 7px solid rgba(31, 31, 31, 0.685);
@@ -19,6 +22,7 @@ body{
     justify-content: center;
     position:relative;
     margin:50px auto;
+    transition: all .5s;
 }
 .center{
     background-color:rgba(255, 46, 46, 0.822);
@@ -65,7 +69,8 @@ body{
     color: rgba(255, 217, 0, 0.924);
     font-family: "Sacramento", cursive;
     font-size: 23px;
-    text-shadow: -1px -1px 7px rgb(255 217 0 / 40%), 0px 0px 7px #ffffff9c;}
+    text-shadow: -1px -1px 7px rgb(255 217 0 / 40%), 0px 0px 7px #ffffff9c;
+}
 .numbers{
     color:#fff;
     position: absolute;
@@ -86,6 +91,7 @@ body{
     transform: rotate(30deg);
     
 }
+
 .n2 {
     top: 40px;
     right: 10px;
@@ -148,6 +154,85 @@ body{
     top:0px;
 }
 
+/* end-clock */
+
+
+
+/* star-digital-clock */
+/* .digital-clock{
+    color:#fff;
+    font-size:20px;
+    background-color: rgb(37, 37, 37);
+    width:fit-content;
+    padding:25px 30px;;
+    border-radius: 10px;
+    margin:auto;
+    box-shadow: inset 0 0 55px rgb(0, 0, 0);
+    border: 7px solid rgba(31, 31, 31, 0.685);
+    position:relative;
+} */
+.container{
+    /* border:2px solid; */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    width:fit-content;
+margin:auto;
+}
+.digital-clock {
+    color: #fff;
+    font-size: 20px;
+    background-color: rgb(37, 37, 37);
+    width: fit-content;
+    padding: 8px 13px;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: inset 0 0 55px rgb(0 0 0);
+    border: 7px solid rgba(31, 31, 31, 0.685);
+    position: absolute;
+    bottom: 90px;
+    transform: scale(0.6);
+    transition: all .5s;
+
+}
+.bom-dg{
+
+    padding: 25px 30px;
+    bottom: 114px;
+    transform: scale(1);
+}
+
+
+.opc{
+    opacity:0;
+}
+.brand-dg{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    color: rgba(255, 217, 0, 0.924);
+    font-family: "Sacramento", cursive;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    text-shadow: -1px -1px 7px rgb(255 217 0 / 40%), 0px 0px 7px #ffffff9c;
+}
+/* end-digital-clock */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .title{
@@ -169,6 +254,10 @@ position:relative;
     box-shadow:0 0 15px rgba(175, 175, 175, 0.829);
     transition: all 2s;
     background-color: rgba(255, 35, 35, 0.815);
+}
+.p-ply-lop{
+    display:flex;
+    justify-content: space-around;
 }
 @media(max-width:500px){
     .setting{
@@ -267,13 +356,57 @@ label{
     cursor: pointer;
     display:block;
     box-shadow:0 0 15px rgba(228, 228, 228, 0.527);
-    margin:20px auto;
+    /* margin:20px auto; */
+    margin: 20px 0;
 }
-#play:active{
+#play:active,#play:hover,#play:focus{
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.692);
     transition:all .7s;
 }
 
+
+
+
+.change{
+    display:flex;
+    align-items: center;
+}
+.change p{
+    display:inline-block;
+} 
+.loop{
+    width: 50px;
+    height: 20px;
+    border-radius: 25px;
+    margin-left: 15px;
+    background-color: #ffffffd1;
+    position:relative;
+    transition: all .5s;
+
+}
+
+.loop span{
+
+    width: 20px;
+    height: 19px;
+    background-color: transparent;
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #520600b8;
+  
+    cursor:pointer;
+    margin:0;
+    transition: all .5s;
+}
+.r-check{
+    right: 28px;
+}
+.l-check{
+    right: 0px;
+}
+.bg-check{
+    background-color: #f44336;
+}
 
 footer{
     color:#fff;
