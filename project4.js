@@ -1,8 +1,13 @@
 //      , >
+
+
+
+
 const cog = document.getElementById("cog");
 const inpSec = document.getElementById("inpSec");
 const inpMin = document.getElementById("inpMin");
 const inpHour = document.getElementById("inpHour");
+
 
 // Star-dg-clock
 const dgSec = document.getElementById("dg-sec");
@@ -12,6 +17,10 @@ const dgHour = document.getElementById("dg-hour");
 cog.parentElement.parentElement.style.left = `-${
   cog.parentElement.parentElement.scrollWidth - 43
 }px`;
+
+
+
+
 
 cog.addEventListener("click", (eo) => {
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -45,9 +54,18 @@ cog.addEventListener("click", (eo) => {
         dgSec.innerText = "00";
       } else if (inpSec.value < 10) {
         dgSec.innerText = `0${inpSec.value}`;
-      } else {
+       } //else if (inpSec.value[0] == "0") {
+      //   // dgSec.innerText = `${inpSec.value}`;
+      //  console.log(`azerty${inpSec.value[0]}`)
+      // }
+       else {
         dgSec.innerText = inpSec.value;
       }
+    //  if (inpSec.value[0] === "0") {
+    //   inpSec.value = inpSec.value[1]
+    //     dgSec.innerText = `${inpSec.value}`;
+    //    console.log(`azerty${inpSec.value[0]}`)
+    //   }
       // INPUT-MIN
 
       if (inpMin.value == "") {
@@ -105,7 +123,13 @@ play.addEventListener("click", (eo) => {
 
   let secDeg = parseInt(`${inpSec.value * 6}`);
   let minDeg = parseInt(`${inpMin.value * 6}`);
-  let hourDeg = parseInt(`${inpHour.value * 30}`);
+  let hourDeg
+  if (inpHour.value < 12) {
+    hourDeg = parseInt(`${inpHour.value * 30}`);
+  } else {
+    hourDeg = parseInt(`${(inpHour.value - 12) * 30}`);
+  }
+  
   let topHour = parseInt(`${hourDeg + inpMin.value * 0.5}`)
   // let finn =  1
   // let iSec =  parseInt(`${inpSec.value}`)
@@ -115,6 +139,7 @@ play.addEventListener("click", (eo) => {
   // let iSec =  inpSec.value
 
   goSec = setInterval(() => {
+    
     if (secDeg < 360) {
       sec.style.transform = `translateY(-50%) rotate(${secDeg + 6}deg)`;
       secDeg += 6;
@@ -131,17 +156,37 @@ play.addEventListener("click", (eo) => {
       }
 
       //
-      if (topHour < 360) {
-        // let topHour = parseInt((minDeg * 0.5) / 30 / 6)
+      // if (topHour < 360) {
+        // if (topHour >= 360) {
+        //   hour.style.transform = `translateY(-50%) rotate(${topHour - 360}deg)`;
+        // }
+        if (topHour < 360) {
+          // let topHour = parseInt((minDeg * 0.5) / 30 / 6)
+  
+          hour.style.transform = `translateY(-50%) rotate(${topHour}deg)`;
+  
+          topHour += 0.5;
+  
+        } else {
+          hour.style.transform = `translateY(-50%) rotate(0.5deg)`;
+          topHour = 0;
+        }
+      // }
+      // else {
 
-        hour.style.transform = `translateY(-50%) rotate(${topHour}deg)`;
 
-        topHour += 0.5;
+      // }
+      // if (topHour < 360) {
+      //   // let topHour = parseInt((minDeg * 0.5) / 30 / 6)
 
-      } else {
-        hour.style.transform = `translateY(-50%) rotate(0.5deg)`;
-        topHour = 0;
-      }
+      //   hour.style.transform = `translateY(-50%) rotate(${topHour}deg)`;
+
+      //   topHour += 0.5;
+
+      // } else {
+      //   hour.style.transform = `translateY(-50%) rotate(0.5deg)`;
+      //   topHour = 0;
+      // }
     }
     //**************************************//
     //********* STAR DIGITAL CLOCK *********//
@@ -200,7 +245,7 @@ play.addEventListener("click", (eo) => {
     }
 
   
-    console.log(iSec);
+    // console.log(iSec);
     iSec++;
 
   }, 100);
@@ -211,28 +256,53 @@ play.addEventListener("click", (eo) => {
   });
 });
 
+const problem = document.getElementById("problem");
+
+setInterval(() => {
+if(inpSec.value >=60 || inpMin.value >=60 || inpHour.value >=24 ){
+  if(inpHour.value >=24){
+    inpHour.classList.add("error")
+    
+  } else if( inpMin.value >=60 ){
+    inpMin.classList.add("error")
+    
+  } else if(inpSec.value >=60 ){
+    inpSec.classList.add("error")
+    
+  }
+  play.setAttribute("disabled","")
+
+  problem.classList.add("problem")
+  problem.classList.remove("dn")
+} else{
+  inpSec.classList.remove("error")
+    inpMin.classList.remove("error")
+    inpHour.classList.remove("error")
+    play.removeAttribute("disabled")
+    problem.classList.remove("problem")
+    problem.classList.add("dn")
+
+} 
+},200)
 
 
 
-
-
-
-
-const change = document.querySelector(".loop span")
+const chgSpan = document.querySelector(".loop span")
+const change = document.querySelector(".loop")
 const dgclock = document.querySelector(".digital-clock")
 const clock = document.querySelector(".clock")
 const container = document.querySelector(".container")
 const brand = document.querySelector(".brand-dg")
-console.log(change)
+// console.log(change)
 
 
 change.addEventListener("click",(eo) => {
   
   // eo.target.style.left="initial"
-  eo.target.classList.toggle("r-check")
-  eo.target.classList.toggle("l-check")
-  eo.target.parentElement.classList.toggle("bg-check")
-  eo.target.classList.toggle("bg-check")
+  chgSpan.classList.toggle("r-check")
+  chgSpan.classList.toggle("l-check")
+  change.classList.toggle("bg-check")
+  chgSpan.classList.toggle("bg-check")
   clock.classList.toggle("opc")
   brand.classList.toggle("opc")
   dgclock.classList.toggle("bom-dg")

@@ -22,7 +22,7 @@ body{
     justify-content: center;
     position:relative;
     margin:50px auto;
-    transition: all .5s;
+    transition: all 1s;
 }
 .center{
     background-color:rgba(255, 46, 46, 0.822);
@@ -193,7 +193,7 @@ margin:auto;
     position: absolute;
     bottom: 90px;
     transform: scale(0.6);
-    transition: all .5s;
+    transition: all 1s;
 
 }
 .bom-dg{
@@ -255,9 +255,20 @@ position:relative;
     transition: all 2s;
     background-color: rgba(255, 35, 35, 0.815);
 }
+/* .main{
+
+} */
 .p-ply-lop{
     display:flex;
     justify-content: space-around;
+    /* position: relative; */
+    /* width: fit-content;
+    padding: 10px 20px;
+    border-radius: 20px; */
+    /* margin-bottom: 50px; */
+    /* box-shadow: 0 0 15px rgb(175 175 175 / 83%); */
+    /* transition: all 2s; */
+    /* background-color: rgba(255, 35, 35, 0.815); */
 }
 @media(max-width:500px){
     .setting{
@@ -334,7 +345,7 @@ position:relative;
 }
 .par-setting{
     display:flex;
-    justify-content: space-around;
+   justify-content:space-evenly;
     width:100%;
 }
 .par-hour,.par-min,.par-sec{
@@ -347,17 +358,16 @@ label{
     font-weight:bold;
 }
 #play{
-    all:unset;
-    /* margin:30px; */
-    color:#fff;
+    all: unset;
+    color: #fff;
     background-color: #ff9800;
-    padding:12px 20px;
-    border-radius:10px;
+    padding: 12px 20px;
+    border-radius: 10px;
     cursor: pointer;
-    display:block;
-    box-shadow:0 0 15px rgba(228, 228, 228, 0.527);
-    /* margin:20px auto; */
-    margin: 20px 0;
+    display: block;
+    box-shadow: 0 0 15px rgb(228 228 228 / 53%);
+    margin: 5px auto ;
+    transition:all .5s;
 }
 #play:active,#play:hover,#play:focus{
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.692);
@@ -365,7 +375,10 @@ label{
 }
 
 
-
+#play:disabled{
+    opacity: .4;
+    cursor: not-allowed;
+}
 
 .change{
     display:flex;
@@ -381,8 +394,8 @@ label{
     margin-left: 15px;
     background-color: #ffffffd1;
     position:relative;
-    transition: all .5s;
-
+    transition: all 1s;
+    box-shadow: 0 0 5px rgba(51, 51, 51, 0.582);
 }
 
 .loop span{
@@ -392,11 +405,11 @@ label{
     background-color: transparent;
     position: absolute;
     border-radius: 50%;
-    border: 1px solid #520600b8;
-  
-    cursor:pointer;
-    margin:0;
-    transition: all .5s;
+    border: 1px solid #5205004d;
+    cursor: pointer;
+    margin: 0;
+    transition: all 1s;
+    box-shadow: 0 0 2px #333;
 }
 .r-check{
     right: 28px;
@@ -416,3 +429,41 @@ footer{
     padding:20px;
     border-radius:15px 15px 0 0 ;
     }
+
+
+.error{
+    /* border:1px solid #dc3545; */
+    animation: error .5s 1;
+    box-shadow: inset 0 0 14px #ff0018;
+    color:#dc3545;
+}
+.dn{
+    opacity: 0;
+}
+.problem{
+    opacity: 1;
+    animation: error .5s 1;
+    padding: 10px;
+    margin-left: 12px;
+    color:antiquewhite;
+}
+.error::placeholder{
+    color:#dc3545;
+}
+
+@keyframes error {
+    0%{
+        transform:scale(1.1)
+    }
+    25%{
+        transform:scale(1)
+    }
+    50%{
+        transform:scale(1.1)
+    }
+    100%{
+        transform:scale(1)
+    }
+
+} 
+ 
