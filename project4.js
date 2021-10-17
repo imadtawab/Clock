@@ -248,7 +248,7 @@ play.addEventListener("click", (eo) => {
     // console.log(iSec);
     iSec++;
 
-  }, 100);
+  }, 1000);
   cog.addEventListener("click", (eo) => {
     if (eo.target.parentElement.parentElement.className == "setting active") {
       clearInterval(goSec);
