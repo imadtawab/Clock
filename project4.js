@@ -8,6 +8,9 @@ const inpSec = document.getElementById("inpSec");
 const inpMin = document.getElementById("inpMin");
 const inpHour = document.getElementById("inpHour");
 
+inpSec.maxleight = "2"
+
+
 
 // Star-dg-clock
 const dgSec = document.getElementById("dg-sec");
@@ -35,6 +38,16 @@ cog.addEventListener("click", (eo) => {
       //**************************************//
       //********* REVERSE TIME TO DEG *********//
       //**************************************//
+ 
+      
+
+      // if (inpHour.lenght > 2){
+      //   console.log("yes")
+      // } else {
+      //   console;log("no")
+      // }
+
+
       let secDeg = parseInt(`${inpSec.value * 6}`);
       let minDeg = parseInt(`${inpMin.value * 6}`);
       let hourDeg = parseInt(`${inpHour.value * 30}`);
