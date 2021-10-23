@@ -1,15 +1,32 @@
-//      , >
+
+////////Star TIME//////
+let time = 1000
 
 
+const speSpan = document.querySelector(".speed .loop span")
+const speed = document.querySelector(".speed .loop")
 
+speed.addEventListener("click",(eo) => {
+  if (document.querySelector(".speed .loop span").className == "r-check"){
+    time = 10
+  } else if (document.querySelector(".speed .loop span").className == "l-check bg-check"){
+    time = 1000
 
+  }
+  console.log(time);
+  speSpan.classList.toggle("r-check")
+  speSpan.classList.toggle("l-check")
+  speed.classList.toggle("bg-check")
+  speSpan.classList.toggle("bg-check")
+
+  
+
+})
+////////End TIME//////
 const cog = document.getElementById("cog");
 const inpSec = document.getElementById("inpSec");
 const inpMin = document.getElementById("inpMin");
 const inpHour = document.getElementById("inpHour");
-
-inpSec.maxleight = "2"
-
 
 
 // Star-dg-clock
@@ -21,33 +38,27 @@ cog.parentElement.parentElement.style.left = `-${
   cog.parentElement.parentElement.scrollWidth - 43
 }px`;
 
+// 
+const regSpan = document.querySelector(".reglage .loop span")
+const reglage = document.querySelector(".reglage .loop")
+const parSetting = document.querySelector(".par-setting")
 
+reglage.addEventListener("click",(eo) => {
+  play.removeAttribute("disabled")
+  reglage.setAttribute("disabled","")
+  speed.removeAttribute("disabled")
+  if (document.querySelector(".reglage .loop span").className == "r-check"){
+    regSpan.classList.remove("r-check")
+    regSpan.classList.add("l-check")
+    reglage.classList.add("bg-check")
+    regSpan.classList.add("bg-check")
 
-
-
-cog.addEventListener("click", (eo) => {
-  ///////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////// OPEN-SETTING ////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////
-  if (eo.target.parentElement.parentElement.className == "setting") {
-    eo.target.parentElement.parentElement.classList.add("active");
-    cog.parentElement.parentElement.style.left = "0px";
-    eo.target.classList.add("rotate");
-
+// 
+    parSetting.classList.add("setActive")
     ads = setInterval(() => {
       //**************************************//
       //********* REVERSE TIME TO DEG *********//
       //**************************************//
- 
-      
-
-      // if (inpHour.lenght > 2){
-      //   console.log("yes")
-      // } else {
-      //   console;log("no")
-      // }
-
-
       let secDeg = parseInt(`${inpSec.value * 6}`);
       let minDeg = parseInt(`${inpMin.value * 6}`);
       let hourDeg = parseInt(`${inpHour.value * 30}`);
@@ -67,18 +78,11 @@ cog.addEventListener("click", (eo) => {
         dgSec.innerText = "00";
       } else if (inpSec.value < 10) {
         dgSec.innerText = `0${inpSec.value}`;
-       } //else if (inpSec.value[0] == "0") {
-      //   // dgSec.innerText = `${inpSec.value}`;
-      //  console.log(`azerty${inpSec.value[0]}`)
-      // }
+       }
        else {
         dgSec.innerText = inpSec.value;
       }
-    //  if (inpSec.value[0] === "0") {
-    //   inpSec.value = inpSec.value[1]
-    //     dgSec.innerText = `${inpSec.value}`;
-    //    console.log(`azerty${inpSec.value[0]}`)
-    //   }
+
       // INPUT-MIN
 
       if (inpMin.value == "") {
@@ -98,6 +102,32 @@ cog.addEventListener("click", (eo) => {
         dgHour.innerText = inpHour.value;
       }
     }, 500);
+  
+
+  } else if (document.querySelector(".reglage .loop span").className == "l-check bg-check"){
+    regSpan.classList.add("r-check")
+    regSpan.classList.remove("l-check")
+    reglage.classList.remove("bg-check")
+    regSpan.classList.remove("bg-check")
+    parSetting.classList.remove("setActive")
+
+  }
+})
+
+
+// 
+
+cog.addEventListener("click", (eo) => {
+ 
+  ///////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////// OPEN-SETTING ////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////
+  if (eo.target.parentElement.parentElement.className == "setting") {
+    eo.target.parentElement.parentElement.classList.add("active");
+    cog.parentElement.parentElement.style.left = "0px";
+    eo.target.classList.add("rotate");
+
+  
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -120,16 +150,48 @@ const min = document.getElementById("min");
 const sec = document.getElementById("sec");
 const play = document.getElementById("play");
 play.addEventListener("click", (eo) => {
+
+if (inpSec.value == "") {
+  dgSec.innerText = "00";
+  }
+ if (inpMin.value == "") {
+    dgMin.innerText = "00";
+    }
+   if (inpHour.value == "") {
+      dgHour.innerText = "00";
+      }
+
+  reglage.addEventListener("click", (eo) => {
+
+    inpSec.value == ""
+    inpMin.value == ""
+    inpHour.value == ""
+    if (document.querySelector(".reglage .loop span").className == "l-check bg-check"){
+      
+      clearInterval(goSec)
+    }
+  
+  })
+
+  reglage.removeAttribute("disabled")
+
+  play.setAttribute("disabled","")
+  speed.setAttribute("disabled","")
+// 
+  regSpan.classList.add("r-check")
+  regSpan.classList.remove("l-check")
+  reglage.classList.remove("bg-check")
+  regSpan.classList.remove("bg-check")
+  parSetting.classList.remove("setActive")
   /////////////////////////////////////////////////////////////
   //////////////////// CLOSE SETTING //////////////////////////
   /////////////////////////////////////////////////////////////
-
-  eo.target.parentElement.classList.remove("active");
+  eo.target.parentElement.parentElement.classList.remove("active");
   cog.parentElement.parentElement.style.left = `-${
     cog.parentElement.parentElement.scrollWidth - 43
   }px`;
   cog.classList.remove("rotate");
-  clearInterval(ads);
+ 
   /////////////////////////////////////////////////////////////
   //////////////////// Star Seconds //////////////////////////
   /////////////////////////////////////////////////////////////
@@ -144,13 +206,10 @@ play.addEventListener("click", (eo) => {
   }
   
   let topHour = parseInt(`${hourDeg + inpMin.value * 0.5}`)
-  // let finn =  1
-  // let iSec =  parseInt(`${inpSec.value}`)
   let iSec = parseInt(inpSec.value);
   let iMin = parseInt(inpMin.value);
   let iHour = parseInt(inpHour.value);
   // let iSec =  inpSec.value
-
   goSec = setInterval(() => {
     
     if (secDeg < 360) {
@@ -184,22 +243,7 @@ play.addEventListener("click", (eo) => {
           hour.style.transform = `translateY(-50%) rotate(0.5deg)`;
           topHour = 0;
         }
-      // }
-      // else {
 
-
-      // }
-      // if (topHour < 360) {
-      //   // let topHour = parseInt((minDeg * 0.5) / 30 / 6)
-
-      //   hour.style.transform = `translateY(-50%) rotate(${topHour}deg)`;
-
-      //   topHour += 0.5;
-
-      // } else {
-      //   hour.style.transform = `translateY(-50%) rotate(0.5deg)`;
-      //   topHour = 0;
-      // }
     }
     //**************************************//
     //********* STAR DIGITAL CLOCK *********//
@@ -258,15 +302,23 @@ play.addEventListener("click", (eo) => {
     }
 
   
-    // console.log(iSec);
-    iSec++;
 
-  }, 1000);
-  cog.addEventListener("click", (eo) => {
-    if (eo.target.parentElement.parentElement.className == "setting active") {
-      clearInterval(goSec);
-    }
-  });
+
+
+
+
+
+
+
+
+
+
+
+    console.log(iSec);
+    iSec++;
+  }, time);
+
+  clearInterval(ads);
 });
 
 const problem = document.getElementById("problem");
@@ -291,7 +343,12 @@ if(inpSec.value >=60 || inpMin.value >=60 || inpHour.value >=24 ){
   inpSec.classList.remove("error")
     inpMin.classList.remove("error")
     inpHour.classList.remove("error")
-    play.removeAttribute("disabled")
+    if (reglage.className == "loop bg-check") {
+      play.removeAttribute("disabled")
+    } else {
+      play.setAttribute("disabled","")
+    }
+    // reglage.className == "loop bg-check"
     problem.classList.remove("problem")
     problem.classList.add("dn")
 
@@ -300,8 +357,8 @@ if(inpSec.value >=60 || inpMin.value >=60 || inpHour.value >=24 ){
 
 
 
-const chgSpan = document.querySelector(".loop span")
-const change = document.querySelector(".loop")
+const chgSpan = document.querySelector(".change .loop span")
+const change = document.querySelector(".change .loop")
 const dgclock = document.querySelector(".digital-clock")
 const clock = document.querySelector(".clock")
 const container = document.querySelector(".container")
@@ -322,3 +379,29 @@ change.addEventListener("click",(eo) => {
   
 
 })
+
+
+
+// const regSpan = document.querySelector(".reglage .loop span")
+// const reglage = document.querySelector(".reglage .loop")
+// const parSetting = document.querySelector(".par-setting")
+
+// reglage.addEventListener("click",(eo) => {
+//   if (document.querySelector(".reglage .loop span").className == "r-check"){
+//     parSetting.classList.add("setActive")
+//   } else if (document.querySelector(".reglage .loop span").className == "l-check bg-check"){
+//     parSetting.classList.remove("setActive")
+    
+
+//   }
+
+//   regSpan.classList.toggle("r-check")
+//   regSpan.classList.toggle("l-check")
+//   reglage.classList.toggle("bg-check")
+//   regSpan.classList.toggle("bg-check")
+
+  
+
+// })
+
+

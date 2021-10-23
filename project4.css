@@ -1,12 +1,20 @@
 body{
     background-color: #333;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* height: calc(100vh - 16px); */
     padding:0;
     margin:0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+button{
+    all:unset;
+}
+button:disabled{
+    opacity: .4;
+    cursor: not-allowed;
+    background-color: #bfbfbf;
+}
+button:disabled span{
+    cursor: not-allowed;
+
 }
 
 
@@ -40,7 +48,6 @@ body{
     transform-origin:bottom center;
     transform:translateY(-50%) rotate(60deg);
     position:absolute;
-    /* box-shadow: inset 0 0 1px rgb(0, 0, 0); */
     z-index: 7;
 }
 #min{
@@ -81,7 +88,6 @@ body{
     display:flex;
     justify-content:center;
     align-items: center;
-    /* border:2px solid rgb(255, 255, 255); */
     border-radius:50%;
 }
 
@@ -120,9 +126,6 @@ body{
     bottom:0px;
 }
 .n7{
-    /* bottom: 25px;
-    left: 50px;
-    transform: rotate(45deg); */
     bottom: 10px;
     left: 40px;
     transform: rotate(30deg);
@@ -156,23 +159,7 @@ body{
 
 /* end-clock */
 
-
-
-/* star-digital-clock */
-/* .digital-clock{
-    color:#fff;
-    font-size:20px;
-    background-color: rgb(37, 37, 37);
-    width:fit-content;
-    padding:25px 30px;;
-    border-radius: 10px;
-    margin:auto;
-    box-shadow: inset 0 0 55px rgb(0, 0, 0);
-    border: 7px solid rgba(31, 31, 31, 0.685);
-    position:relative;
-} */
 .container{
-    /* border:2px solid; */
     display:flex;
     justify-content: center;
     align-items: center;
@@ -193,7 +180,8 @@ margin:auto;
     position: absolute;
     bottom: 90px;
     transform: scale(0.6);
-    transition: all 1s;
+ 
+    transition: bottom 1s , transform 1s , padding 1s  ;
 
 }
 .bom-dg{
@@ -231,7 +219,7 @@ margin:auto;
 .myzero{
     overflow: hidden;
     display: inline-block;
-    max-width: 20px;
+    max-width: 21px;
 }
 .double-dot{
     position:relative;
@@ -254,28 +242,17 @@ border-radius:0 0 15px 15px;
 .setting{
 position:relative;
     width:50%;
-    /* width:80%; */
     padding:0 20px 20px 20px;
     border-radius:0 0px 20px 0;
     margin-bottom:50px;
     box-shadow:0 0 15px rgba(175, 175, 175, 0.829);
-    transition: all 2s;
+    transition: left 2s;
     background-color: rgba(255, 35, 35, 0.815);
 }
-/* .main{
 
-} */
 .p-ply-lop{
     display:flex;
     justify-content: space-around;
-    /* position: relative; */
-    /* width: fit-content;
-    padding: 10px 20px;
-    border-radius: 20px; */
-    /* margin-bottom: 50px; */
-    /* box-shadow: 0 0 15px rgb(175 175 175 / 83%); */
-    /* transition: all 2s; */
-    /* background-color: rgba(255, 35, 35, 0.815); */
 }
 @media(max-width:500px){
     .setting{
@@ -283,9 +260,7 @@ position:relative;
  }
 }
 .active{
-    /* animation:mysetting 2s 1; */
-    
-    left:0;
+       left:0;
 }
 @keyframes mysetting{
     0%{
@@ -298,7 +273,6 @@ position:relative;
 .title-stting{
     color:#fff;
     text-align:center;
-    /* box-shadow:0 0 10px #fff; */
     box-shadow:0 5px 10px rgba(228, 228, 228, 0.418);
     margin:0;
     padding:20px;
@@ -318,14 +292,10 @@ position:relative;
     font-size:20px;
     background-color: rgba(255, 35, 35, 0.815);
     box-shadow:0 0 15px rgba(175, 175, 175, 0.829),
-    0 0 0px #fff;
-    /* overflow: hidden; */
-    
+    0 0 0px #fff;  
 }
 .icon-cog{
     display:block;
-    /* border:2px solid; */
-    /* height:100%; */
     padding:12px;
     padding-left:15px;
     margin-right:0;
@@ -335,14 +305,11 @@ position:relative;
     
 }
 .rotate{
-    /* transform:rotate(360deg) */
-    transform: rotate(1080deg);
+  transform: rotate(1080deg);
 }
 .hms{
     all:unset;
-    /* position:absolute;
-    bottom:20px; */
-    width:50px;
+     width:50px;
     height:30px;
     background-color: #fff;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.692);
@@ -354,6 +321,12 @@ position:relative;
     display:flex;
    justify-content:space-evenly;
     width:100%;
+    height: 0;
+    overflow-y: hidden;
+    transition: height 1s;
+}
+.setActive{
+    height: 75px;
 }
 .par-hour,.par-min,.par-sec{
     text-align:center;
@@ -382,9 +355,11 @@ label{
 }
 
 
+
 #play:disabled{
     opacity: .4;
     cursor: not-allowed;
+    background-color: darkgray;
 }
 
 .change{
@@ -403,6 +378,7 @@ label{
     position:relative;
     transition: all 1s;
     box-shadow: 0 0 5px rgba(51, 51, 51, 0.582);
+    display: flex;
 }
 
 .loop span{
@@ -439,7 +415,6 @@ footer{
 
 
 .error{
-    /* border:1px solid #dc3545; */
     animation: error .5s 1;
     box-shadow: inset 0 0 14px #ff0018;
     color:#dc3545;
@@ -474,3 +449,20 @@ footer{
 
 } 
  
+
+hr{
+    opacity: .3;
+}
+.speed, .reglage{
+    display:flex;
+    align-items: center;
+}
+.bonus > p{
+    text-align:right;
+    color:antiquewhite;
+}
+
+
+
+
+
